@@ -14,7 +14,5 @@ for file in files_in_directory:
 
 matching = zip(mkv_or_mp4, srt)
 for renaming in list(matching):
-		#srt_file = renaming[1].removesuffix(".srt")
-		#os.rename(f"{dir_name}\{renaming[0]}", f"{dir_name}\{srt_file}.mkv")
-		vid_file = renaming[0].removesuffix(".mkv")
-		os.rename(f"{dir_name}\{renaming[1]}", f"{dir_name}\{vid_file}.srt")
+	vid_file = renaming[0].removesuffix(".mkv")
+	os.rename(f"{dir_name}\{renaming[1]}", f"{dir_name}\{vid_file}.srt")	#copy the name of the video file to the srt file
