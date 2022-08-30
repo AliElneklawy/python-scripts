@@ -1,4 +1,3 @@
-from heapq import merge
 from os import listdir
 from PyPDF2 import PdfFileMerger
 print(""" 
@@ -9,7 +8,7 @@ PDFs = []
 merger = PdfFileMerger()
 for file in listdir(path):
 	if file.endswith(".pdf"):
-		PDFs.append(file )
+		PDFs.append(file)
 print("Merging files....")
 for pdf in PDFs:
 	merger.append(path + '\\' + pdf)
