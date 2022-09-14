@@ -1,9 +1,6 @@
-
 from moviepy.editor import *
-
-
-start = float(input("Start: "))
-end = float(input("End: ")) 
+start = float(input("Start (in seconds): "))
+end = float(input("End (in seconds): ")) 
 path = input("Enter the path: ")
 clip = VideoFileClip(path)
 clip = clip.subclip(start, end)
