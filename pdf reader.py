@@ -22,7 +22,7 @@ voices = speaker.getProperty('voices')
 for i in range(start-1, end+1):
     if m_f == 3:
         if v == 2:
-            v = 0
+            v = 1
         if v == 0:
             v = 1
         elif v == 1:
