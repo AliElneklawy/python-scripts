@@ -1,10 +1,16 @@
+		"""
+  		Put the script in the desired directory and then run it.
+    		If you are using linux, you will need to change each '\' to '/' in the file paths in this script.
+  		"""
+
 import os
 from re import search
 from natsort import natsorted
 
 subtitle = []
 video = []
-dir_name = input("Enter the path: ")
+#dir_name = input("Enter the path: ")
+dir_name = os.path.dirname(__file__)
 files_in_directory = os.listdir(dir_name)
 
 for file in files_in_directory:
