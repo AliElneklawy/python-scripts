@@ -1,11 +1,7 @@
-		"""
-  		Put the script in the desired directory and then run it.
-    		If you are using linux, you will need to change each '\' to '/' in the file paths in this script.
-  		"""
-
 import os
 from re import search
 from natsort import natsorted
+import re
 
 subtitle = []
 video = []
@@ -19,27 +15,28 @@ for file in files_in_directory:
 	elif file.endswith(".mp4") or file.endswith(".mkv"):
 		video.append(file)
 
+
 try:
-	subtitle.sort(key=lambda x: x[(search(r'[Ee][0-9]{1,2}', x).span()[1])-1])	#sort based on episode number
-	video.sort(key=lambda x: x[(search(r'[Ee][0-9]{1,2}', x).span()[1])-1])
+	subtitle.sort(key=lambda x: int(re.search(r'[Ee]([0-9]{1,2})', x).group(1)))	#sort based on episode number
+	video.sort(key=lambda x: int(re.search(r'[Ee]([0-9]{1,2})', x).group(1)))
 except:
 	subtitle = natsorted(subtitle)
 	video = natsorted(video)
 
+
 matching = list(zip(video, subtitle))
 for renaming in matching:
 		if renaming[0].endswith(".mkv"):
-			vid_file = renaming[0].removesuffix(".mkv")
+			vid_file = renaming[0].replace(".mkv", "")
 		elif renaming[0].endswith(".mp4"):
-			vid_file = renaming[0].removesuffix(".mp4")
+			vid_file = renaming[0].replace(".mp4", "")
 		if renaming[1].endswith(".srt"):
 			try:
-				os.rename(f"{dir_name}\{renaming[1]}", f"{dir_name}\{vid_file}.srt")
+				os.rename(f"{dir_name}/{renaming[1]}", f"{dir_name}/{vid_file}.srt")
 			except:
 				continue
 		elif renaming[1].endswith(".ass"):
-			os.rename(f"{dir_name}\{renaming[1]}", f"{dir_name}\{vid_file}.ass")
+			os.rename(f"{dir_name}/{renaming[1]}", f"{dir_name}/{vid_file}.ass")
 		elif renaming[1].endswith(".sub"):
-			os.rename(f"{dir_name}\{renaming[1]}", f"{dir_name}\{vid_file}.sub")
-		
+			os.rename(f"{dir_name}/{renaming[1]}", f"{dir_name}/{vid_file}.sub")
 		
