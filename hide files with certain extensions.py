@@ -6,9 +6,7 @@ def hide_files_by_extension(folder_path, extension):
         for file in files:
             if file.endswith(extension):
                 file_path = os.path.join(root, file)
-
                 ctypes.windll.kernel32.SetFileAttributesW(file_path, 2)  # 2 corresponds to hidden
-
                 print(f"Hid {file}")
 
 if __name__ == "__main__":
